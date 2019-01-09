@@ -1,0 +1,27 @@
+=>if you know that your object will be in the 1st position then use findFirst() method + get() method
+topics.stream().filter(t->t.getId().equals(id)).findFirst().get(); OR
+topics.stream().filter(t->t.getId().equals(id)).collect(Collectors.toList()).get(0);
+
+=>remove all of the elements of this ArrayList that satisfies a given predicate filter
+topics.removeIf(t->t.getId().equals(id));
+
+=>List<Object> objectlist;
+  objectlist.stream().forEach(o->{	    		
+    Map m =(Map)o;
+	System.out.println(m.get("Name")+"::"+m.get("Salary"));
+	});
+
+=>List<Employee> emp;
+emp.stream().forEach(System.out::println);
+
+=>List<Object[]> objlist;
+    objlist.stream().forEach(
+	o->System.out.println(o[0]+"::"+o[1]+"::"+o[2])
+	);
+
+=> initialise map objects directly in java 8
+		player.setGoals(Stream.of(
+				new AbstractMap.SimpleEntry<String, Integer>("club", 100),
+				new AbstractMap.SimpleEntry<>("country",20),
+				new AbstractMap.SimpleEntry<>("total", 120)
+				).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
