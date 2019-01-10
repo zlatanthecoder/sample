@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tempschema?useSSL=false</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hbm2ddl.auto">update</property> <!-- create means whenever we run this application the hibernate will create all the tables for all the entities classes in the database  & update means if table is not there then only it will create it-->
+        <!-- in case of create the following below sql queries will run
+        	drop table if exists Aliencolor
+        	create table Aliencolor (id integer not null, color varchar(255), name varchar(255), primary key (id))
+        	insert into Aliencolor (color, name, id) values (?, ?, ?)
+         -->
+         <!-- in case of update only this query will run insert into Aliencolor (color, name, id) values (?, ?, ?) -->
+        <property name="show_sql">true</property>  <!-- if true then we will be seeing sql queries in console -->
+        
+        <!-- enabling second level cache property as by default it is false -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        
+        <!-- here we have to mentioned the second level cache provider class name -->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+        
+        <!-- by default second level cache is disabled for Query method so enabling second level cache for query() method from here  -->
+        <property name="hibernate.cache.use_query_cache">true</property>
+    </session-factory>
+</hibernate-configuration>
